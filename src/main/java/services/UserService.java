@@ -41,6 +41,14 @@ public class UserService {
         return null;
     }
     
+    public static User findByName (String name){
+        for(User user : users){
+            if(user.getName().equals(name))
+                return user;
+        }
+        return null;
+    }
+    
     public static void insert (User user){
         users.add(user);
     }

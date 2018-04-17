@@ -13,6 +13,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.Product;
+import services.ProductService;
 
 /**
  *
@@ -66,7 +68,14 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        Product produto = new Product();
+        produto.setName(request.getParameter("name"));
+        produto.setBrand(request.getParameter("brand"));
+        produto.setDescription(request.getParameter("descricao"));
+        produto.setPrice(Double.parseDouble(request.getParameter("valorvenda")));
+        ProductService.insert(produto);
+        processRequest(request, response);       
     }
 
     /**

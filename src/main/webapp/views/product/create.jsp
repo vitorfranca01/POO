@@ -12,15 +12,15 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label>Nome</label>
-                        <input class="form-control" placeholder="Nome" />
+                        <input class="form-control" placeholder="Nome" name="name"/>
                     </div>
                     <div class="form-group col-md-6">
                         <label>Marca</label>
-                        <input class="form-control" placeholder="Marca" />
+                        <input class="form-control" placeholder="Marca" name="brand" />
                     </div>
                     <div class="form-group col-md-6">
                         <label>Descrição</label>
-                        <textarea class="form-control" rows="8" placeholder="Descreva o produto.."></textarea>
+                        <textarea class="form-control" rows="8" placeholder="Descreva o produto.." name="descricao"></textarea>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
@@ -29,11 +29,11 @@
                         </div>
                         <div class="form-group">
                             <label>Valor venda</label>
-                            <input class="form-control" placeholder="R$ 9,90" />
+                            <input class="form-control" placeholder="R$ 9,90" name="valorvenda"/>
                         </div>
                         <div class="form-group">
                             <label>Valor compra</label>
-                            <input class="form-control" placeholder="R$ 9,90" />
+                            <input class="form-control" placeholder="R$ 9,90" name="valorcompra"/>
                         </div>
                     </div>
                 </div>

@@ -25,7 +25,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Quantidade</label>
-                            <input class="form-control" placeholder="Quantidade" />
+                            <input class="form-control" value="1" placeholder="Quantidade" />
                         </div>
                         <div class="form-group">
                             <label>Valor venda</label>

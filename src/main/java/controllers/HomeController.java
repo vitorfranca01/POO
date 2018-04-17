@@ -13,6 +13,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import models.User;
+import services.UserService;
 
 /**
  *
@@ -51,7 +54,15 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        
+        if(session.getAttribute("UserId") != null) {
+            User user = UserService.findById(Integer.parseInt(session.getAttribute("UserId").toString()));
+            session.setAttribute("username", user.getName());
+            processRequest(request, response);
+        } else {
+            response.sendRedirect("Login");
+        }
     }
 
     /**

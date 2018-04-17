@@ -13,16 +13,16 @@
     </head>
     <body class="text-center">
         <div class="container">
-            <form class="form-signin">
+            <form class="form-signin" method="post" action="Login">
                 <h1>Supermercados Astec</h1>
                 <h3>Por favor, entre.</h3>
                 <div class="form-group">
-                    <label>Email:</label>
-                    <input type="email" class="form-control" placeholder="example@example.com" />
+                    <label>CPF:</label>
+                    <input type="text" name="cpf" class="form-control" placeholder="123.456.789-10" />
                 </div>
                 <div class="form-group">
                     <label>Senha:</label>
-                    <input type="password" class="form-control" />
+                    <input type="password" name="password" class="form-control" />
                 </div>
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" />

@@ -13,6 +13,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import models.User;
+import services.UserService;
 
 /**
  *
@@ -66,7 +69,18 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        
+        String cpf = request.getParameter("cpf");
+        String password = request.getParameter("password");
+        
+        User user = UserService.authenticate(cpf, password);
+        if(user != null) {
+            session.setAttribute("UserId", user.getId());
+            response.sendRedirect("Home");
+        } else {
+            processRequest(request, response);
+        }
     }
 
     /**

@@ -11,26 +11,16 @@ import java.util.Date;
  *
  * @author Yuri PC
  */
-public class User {
-    private int id;
+public class User extends BaseEntity {
     private String name;
     private String cpf;
     private String password;
     private Date creationDate;
     
-    public User (int id, String name, String cpf, String password){
-        this.id = id;
+    public User (String name, String cpf, String password){
         this.name = name;
         this.cpf = cpf;
         this.password = password;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {

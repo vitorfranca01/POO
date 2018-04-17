@@ -16,7 +16,7 @@ public class UserService {
     private static ArrayList<User> users = new ArrayList<User>();
         
     public static User authenticate (String cpf, String password){
-        users.add(new User(1, "Yuri", "123.456.789-10", "123456"));
+        users.add(new User("Yuri", "123.456.789-10", "123456"));
         User user = findByCpf(cpf);
         
         if(user != null && user.getPassword().equals(password))

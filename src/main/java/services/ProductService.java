@@ -16,7 +16,7 @@ public class ProductService {
     private static ArrayList<Product> products = new ArrayList<Product>();
     
     public static Product validarCadastro (int id, String name, String brand, double price, String description){
-       //products.add(new Product(1, "produto", "marca", "preco", "descricao"));
+        //products.add(new Product(1, "produto", "marca", "preco", "descricao"));
         Product product = getById(1);
         //validar produto
         if(product != null && product.getId() == 1)

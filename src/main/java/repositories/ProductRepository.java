@@ -39,23 +39,63 @@ public class ProductRepository {
             stmt.setString(1, product.getName());
             //GregorianCalendar cal = new GregorianCalendar(1992, 10, 5); // 5 de novembro de 1992  
             //stmt.setDate(2, new java.sql.Date(cal.getTimeInMillis()));
-            stmt.setString(2, "");
+            stmt.setString(2, product.getDescription());
             stmt.setDouble(3, product.getPrice());
             
             int status = stmt.executeUpdate();
+        } catch (Exception e){
+            System.err.print(e.getMessage());
         }
     }
 
-    public void update(BaseEntity entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void update(Product product) {
+        try (Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(
+                        "UPDATE Product SET Name = ?, Description = ?, Price = ? WHERE Id = ?")) {
+            stmt.setString(1, product.getName());
+            //GregorianCalendar cal = new GregorianCalendar(1992, 10, 5); // 5 de novembro de 1992  
+            //stmt.setDate(2, new java.sql.Date(cal.getTimeInMillis()));
+            stmt.setString(2, product.getDescription());
+            stmt.setDouble(3, product.getPrice());
+            stmt.setInt(4, product.getId());
+            
+            int status = stmt.executeUpdate();
+        } catch (Exception e){
+            System.err.print(e.getMessage());
+        }
     }
 
-    public void remove(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void remove(int id) throws ClassNotFoundException, SQLException {
+        try (Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(
+                        "DELETE FROM Product WHERE Id = ?")) {
+            stmt.setInt(1, id);
+            
+            int status = stmt.executeUpdate();
+        } catch (Exception e){
+            System.err.print(e.getMessage());
+        }
     }
 
-    public BaseEntity getById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Product getById(int id) throws ClassNotFoundException, SQLException {
+        try (Connection conn = getConnection();
+                PreparedStatement stmt = conn.prepareStatement(
+                        "SELECT Id, Name, Description, Price FROM Product WHERE Id = ?");
+                ResultSet resultados = stmt.executeQuery()) {
+            
+            stmt.setInt(1, id);
+            
+            while (resultados.next()) {
+                Product product = new Product();
+                
+                product.setId(resultados.getInt("Id"));
+                product.setName(resultados.getString("Name"));
+                product.setPrice(resultados.getDouble("Price"));
+                
+                return product;
+            }
+        }        
+        return null;
     }
 
     public ArrayList<Product> getAll() throws ClassNotFoundException, SQLException {

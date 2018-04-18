@@ -13,6 +13,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.Product;
+import services.ProductService;
 
 /**
  *
@@ -52,6 +54,12 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setAttribute("products", ProductService.getAll());
+        String action = request.getParameter("action");
+        if(action.equals("remove")) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            ProductService.remove(id);
+        }
         processRequest(request, response);
     }
 
@@ -66,7 +74,23 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String action = request.getParameter("action");
+        
+        if(action.equals("create")) {
+            Product produto = new Product();
+            produto.setName(request.getParameter("name"));
+            produto.setBrand(request.getParameter("brand"));
+            produto.setDescription(request.getParameter("descricao"));
+            produto.setPrice(Double.parseDouble(request.getParameter("valorvenda")));
+            
+            ProductService.insert(produto);
+        } else if (action.equals("remove")){
+            int id = Integer.parseInt(request.getParameter("id"));
+            
+            ProductService.remove(id);
+        }
+        processRequest(request, response);       
     }
 
     /**

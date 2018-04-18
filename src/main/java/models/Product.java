@@ -10,10 +10,19 @@ package models;
  * @author Yuri PC
  */
 public class Product extends BaseEntity {
-    private String name;
+    public String name;
     private String brand;
     private double price;
+    private String description;
+    
+    public String getDescription() {
+        return description;
+    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
     public String getName() {
         return name;
     }

@@ -6,6 +6,7 @@
 package services;
 
 import java.util.ArrayList;
+import javax.servlet.http.HttpSession;
 import models.User;
 
 /**
@@ -14,7 +15,17 @@ import models.User;
  */
 public class UserService {
     private static ArrayList<User> users = new ArrayList<User>();
-        
+    
+    public static boolean isLogged (HttpSession session){
+        if(session.getAttribute("UserId") != null)
+            return true;
+        return false;
+    }
+    
+    public static boolean hasPermission (int userId, String permissionName){
+        return true;
+    }
+    
     public static User authenticate (String cpf, String password){
         users.add(new User("Yuri", "123.456.789-10", "123456"));
         User user = findByCpf(cpf);

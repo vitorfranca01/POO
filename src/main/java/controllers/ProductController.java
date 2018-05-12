@@ -20,7 +20,7 @@ import services.ProductService;
  *
  * @author Yuri PC
  */
-@WebServlet(name = "Product", urlPatterns = {"/Product"})
+@WebServlet(name = "Product", urlPatterns = {"/Product", "/product"})
 public class ProductController extends HttpServlet {
 
     /**
@@ -37,7 +37,7 @@ public class ProductController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
-            RequestDispatcher rd = request.getRequestDispatcher("/views/product/create.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/views/product/index.jsp");
             rd.forward(request,response);
         }
     }
@@ -55,11 +55,7 @@ public class ProductController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setAttribute("products", ProductService.getAll());
-        String action = request.getParameter("action");
-        if(action.equals("remove")) {
-            int id = Integer.parseInt(request.getParameter("id"));
-            ProductService.remove(id);
-        }
+        
         processRequest(request, response);
     }
 

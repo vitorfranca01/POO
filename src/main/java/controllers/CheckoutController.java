@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Yuri PC
  */
-@WebServlet(name = "Checkout", urlPatterns = {"/Checkout"})
+@WebServlet(name = "Checkout", urlPatterns = {"/Checkout", "/checkout"})
 public class CheckoutController extends HttpServlet {
 
     /**

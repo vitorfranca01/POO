@@ -8,7 +8,7 @@
     <body>
         <%@include file="../../includes/navbar.jsp" %>
         <div class="container">
-            
+            <h1>Bem-vindo(a), ${sessionScope.username}</h1>
         </div>
         <%@include file="../../includes/footer.jsp" %>
     </body>

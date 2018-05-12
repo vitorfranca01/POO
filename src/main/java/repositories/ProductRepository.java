@@ -21,16 +21,7 @@ import models.Product;
  *
  * @author yuri.jwsilva
  */
-public class ProductRepository {
-    
-    private Connection getConnection() throws ClassNotFoundException, SQLException {
-        // 1A) Declarar o driver JDBC de acordo com o Banco de dados usado
-        Class.forName("com.mysql.jdbc.Driver");
-        
-        Connection conn = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/SupermercadoAstec", "root", "");
-        return conn;
-    }
+public class ProductRepository extends BaseRepository {
     
     public void insert(Product product) throws ClassNotFoundException, SQLException {
         try (Connection conn = getConnection();

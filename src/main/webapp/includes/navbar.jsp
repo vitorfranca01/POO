@@ -2,9 +2,6 @@
     <a class="navbar-brand" href="Home">Supermercado Astec</a>
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" href="Login">Login</a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link" href="Home">Inicio</a>
         </li>
         <li class="nav-item">
@@ -20,8 +17,5 @@
             <a class="nav-link" href="#">Funcionários</a>
         </li>
     </ul>
-    <span class="navbar-text" style="float:right">
-        Bem-vindo(a), ${sessionScope.username}
-    </span>
 </nav>
 <br>

@@ -1,20 +1,20 @@
 package services;
 
 import java.util.ArrayList;
-import models.Sale;
-import repositories.SalesRepository;
+import models.Order;
+import repositories.OrderRepository;
 
 /**
  *
  * @author Vitor
  */
 public class SaleService {
-    private static ArrayList<Sale> sales = new ArrayList<Sale>();
-    private static SalesRepository repository = new SalesRepository();
+    private static ArrayList<Order> sales = new ArrayList<Order>();
+    private static OrderRepository repository = new OrderRepository();
 
 //criar validação de venda
     
-    public static void insert (Sale sale){
+    public static void insert (Order sale){
         try {
             repository.insert(sale);
         } catch (Exception e) {
@@ -32,7 +32,7 @@ public class SaleService {
         return false;
     }
     
-    public static ArrayList<Sale> getAll (){
+    public static ArrayList<Order> getAll (){
         try {
             return repository.getAll();
         } catch (Exception e) {
@@ -41,7 +41,7 @@ public class SaleService {
         return null;
     }
     
-    public static Sale getById (int id) {
+    public static Order getById (int id) {
         try {
             return repository.getById(id);
         } catch (Exception e) {

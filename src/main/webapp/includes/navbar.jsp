@@ -8,13 +8,13 @@
             <a class="nav-link" href="Checkout">Vendas</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="Product">Produtos</a>
+            <a class="nav-link" href="ProductManager">Produtos</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">Relatórios</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Funcionários</a>
+            <a class="nav-link" href="UserManager">Funcionários</a>
         </li>
     </ul>
 </nav>

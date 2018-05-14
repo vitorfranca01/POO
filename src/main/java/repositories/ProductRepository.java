@@ -26,16 +26,18 @@ public class ProductRepository extends BaseRepository {
     public void insert(Product product) throws ClassNotFoundException, SQLException {
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(
-                        "INSERT INTO Product (Name, Description, Price) VALUES (?,?,?)")) {
+                        "INSERT INTO Product (Name, Description, Price, Amount, CreationDate, Brand) VALUES (?,?,?,?,?,?)")) {
             stmt.setString(1, product.getName());
-            //GregorianCalendar cal = new GregorianCalendar(1992, 10, 5); // 5 de novembro de 1992  
-            //stmt.setDate(2, new java.sql.Date(cal.getTimeInMillis()));
             stmt.setString(2, product.getDescription());
             stmt.setDouble(3, product.getPrice());
+            stmt.setInt(4, product.getAmount());
+            GregorianCalendar cal = new GregorianCalendar(1992, 10, 5); // 5 de novembro de 1992  
+            stmt.setDate(5, new java.sql.Date(cal.getTimeInMillis()));
+            stmt.setString(6, product.getBrand());
             
             int status = stmt.executeUpdate();
         } catch (Exception e){
-            System.err.print(e.getMessage());
+            throw e;
         }
     }
 

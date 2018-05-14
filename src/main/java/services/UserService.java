@@ -8,6 +8,7 @@ package services;
 import java.util.ArrayList;
 import javax.servlet.http.HttpSession;
 import models.User;
+import repositories.UserRepository;
 
 /**
  *
@@ -15,6 +16,7 @@ import models.User;
  */
 public class UserService {
     private static ArrayList<User> users = new ArrayList<User>();
+    private static UserRepository repository = new UserRepository();
     
     public static boolean isLogged (HttpSession session){
         if(session.getAttribute("UserId") != null)
@@ -27,7 +29,6 @@ public class UserService {
     }
     
     public static User authenticate (String cpf, String password){
-        users.add(new User("Yuri", "123.456.789-10", "123456"));
         User user = findByCpf(cpf);
         
         if(user != null && user.getPassword().equals(password))
@@ -37,17 +38,17 @@ public class UserService {
     }
     
     public static User findByCpf (String cpf){
-        for(User user : users){
-            if(user.getCpf().equals(cpf))
-                return user;
+        try {
+            return repository.getByCPF(cpf);
+        } catch (Exception e) {
         }
         return null;
     }
     
     public static User findById (int id){
-        for(User user : users){
-            if(user.getId() == id)
-                return user;
+        try {
+            return repository.getById(id);
+        } catch (Exception e) {
         }
         return null;
     }
@@ -61,7 +62,11 @@ public class UserService {
     }
     
     public static void insert (User user){
-        users.add(user);
+        try {
+            repository.insert(user);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
     
     public static void remove(int id){
@@ -69,5 +74,14 @@ public class UserService {
         
         if(user != null)
             users.remove(user);
+    }
+    
+    public static ArrayList<User> getAll(){
+        try {
+            return repository.getAll();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 }

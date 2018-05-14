@@ -13,6 +13,7 @@ public class Product extends BaseEntity {
     public String name;
     private String brand;
     private double price;
+    private int amount;
     private String description;
     
     public String getDescription() {
@@ -29,6 +30,14 @@ public class Product extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+    
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     public String getBrand() {

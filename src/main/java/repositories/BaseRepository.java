@@ -17,10 +17,10 @@ public abstract class BaseRepository {
         
     protected Connection getConnection() throws ClassNotFoundException, SQLException {
         // 1A) Declarar o driver JDBC de acordo com o Banco de dados usado
-        Class.forName("com.mysql.jdbc.Driver");
+        Class.forName("org.apache.derby.jdbc.ClientDriver");
         
         Connection conn = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/SupermercadoAstec", "root", "");
+                "jdbc:derby://localhost:1527/Store", "root", "root");
         return conn;
     }
 }

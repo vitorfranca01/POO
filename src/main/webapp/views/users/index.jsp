@@ -5,21 +5,21 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="models.Sale"%>
+<%@page import="models.User"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <%@include file="../../includes/header.jsp" %>
-        <title>Gerenciamento de Vendas</title>
+        <title>Gerenciamento de Funcionarios</title>
     </head>
     <body>
         <%@include file="../../includes/navbar.jsp" %>
         <input type="text" hidden=""/>
         <div class="container">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createSaleModal">
-                Fazer uma Venda
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createUserModal">
+                Cadastrar novo funcionário
             </button>
             <table class="table">
                 <tr>
@@ -27,14 +27,13 @@
                     <th>CPF</th>
                     <th>Data de Criação</th>
                 </tr>
-                <c:forEach items="${sales}" var="user">               
+                <c:forEach items="${users}" var="user">               
                 <tr>
-                    <td>${sale.name}</td>
-                    <td>${sale.cpf}</td>
-                    <td>${sale.creationDate}</td>
+                    <td>${user.name}</td>
+                    <td>${user.cpf}</td>
                     <td>
                         <button class="btn btn-success">Editar</button>
-                        <a href="RemoveSale?id=${sale.id}" class="btn btn-danger btnDelete">Deletar</a>
+                        <a href="RemoveUser?id=${product.id}" class="btn btn-danger btnDelete">Deletar</a>
                     </td>
                 </tr>
                 </c:forEach>

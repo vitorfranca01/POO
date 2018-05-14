@@ -3,23 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package controllers.Products;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import services.ProductService;
 
 /**
  *
- * @author Yuri PC
+ * @author Beto
  */
-@WebServlet(name = "Checkout", urlPatterns = {"/Checkout", "/checkout"})
-public class CheckoutController extends HttpServlet {
+@WebServlet(name = "RemoveProductController", urlPatterns = {"/RemoveProduct"})
+public class RemoveProductController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,9 +34,6 @@ public class CheckoutController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-            RequestDispatcher rd = request.getRequestDispatcher("/views/checkout/index.jsp");
-            rd.forward(request,response);
         }
     }
 
@@ -52,6 +49,10 @@ public class CheckoutController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        int id = Integer.parseInt(request.getParameter("id"));            
+        ProductService.remove(id);
+        
         processRequest(request, response);
     }
 
@@ -66,6 +67,7 @@ public class CheckoutController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         processRequest(request, response);
     }
 

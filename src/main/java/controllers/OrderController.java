@@ -8,22 +8,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.Sale;
+import models.Order;
 import services.SaleService;
 
 /**
  *
  * @author Vitor
  */
-@WebServlet(name = "Sale", urlPatterns = {"/Sale"})
-public class SaleController extends HttpServlet {
+@WebServlet(name = "OrderController", urlPatterns = {"/Checkout", "/checkout"})
+public class OrderController extends HttpServlet {
     
      protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
-            RequestDispatcher rd = request.getRequestDispatcher("/views/sale/create.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/views/checkout/index.jsp");
             rd.forward(request,response);
         }
     }
@@ -31,12 +31,12 @@ public class SaleController extends HttpServlet {
      @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("sales", SaleService.getAll());
+        /*request.setAttribute("sales", SaleService.getAll());
         String action = request.getParameter("action");
         if(action.equals("remove")) {
             int id = Integer.parseInt(request.getParameter("id"));
             SaleService.remove(id);
-        }
+        }*/
         processRequest(request, response);
     }
     
@@ -47,13 +47,13 @@ public class SaleController extends HttpServlet {
         String action = request.getParameter("action");
         
         if(action.equals("create")) {
-            Sale sale = new Sale();
+            /*Order sale = new Order();
             sale.setValorTotal(Double.parseDouble(request.getParameter("valorTotal")));
             sale.setQtdProdutos(Integer.parseInt(request.getParameter("QtdProdutos")));
             sale.setMetodoPag(Integer.parseInt(request.getParameter("MetodoPag")));
             sale.setCliente(request.getParameter("valorvenda"));
             
-            SaleService.insert(sale);
+            SaleService.insert(sale);*/
         } else if (action.equals("remove")){
             int id = Integer.parseInt(request.getParameter("id"));
             

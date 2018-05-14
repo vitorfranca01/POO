@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers;
+package controllers.Products;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,10 +18,10 @@ import services.ProductService;
 
 /**
  *
- * @author Yuri PC
+ * @author Beto
  */
-@WebServlet(name = "Product", urlPatterns = {"/Product", "/product"})
-public class ProductController extends HttpServlet {
+@WebServlet(name = "ProductManagerController", urlPatterns = {"/ProductManager"})
+public class ProductManagerController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -71,22 +71,16 @@ public class ProductController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String action = request.getParameter("action");
-        
-        if(action.equals("create")) {
             Product produto = new Product();
             produto.setName(request.getParameter("name"));
             produto.setBrand(request.getParameter("brand"));
             produto.setDescription(request.getParameter("descricao"));
+            produto.setAmount(Integer.parseInt(request.getParameter("amount")));
             produto.setPrice(Double.parseDouble(request.getParameter("valorvenda")));
             
             ProductService.insert(produto);
-        } else if (action.equals("remove")){
-            int id = Integer.parseInt(request.getParameter("id"));
-            
-            ProductService.remove(id);
-        }
-        processRequest(request, response);       
+        
+        processRequest(request, response);
     }
 
     /**

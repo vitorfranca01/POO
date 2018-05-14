@@ -15,17 +15,7 @@ public class User extends BaseEntity {
     private String name;
     private String cpf;
     private String password;
-    private Date creationDate;
-    
-    public User (String name, String cpf, String password){
-        this.name = name;
-        this.cpf = cpf;
-        this.password = password;
-    }
-
-    public User() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    //private Date creationDate;
 
     public String getName() {
         return name;
@@ -51,12 +41,8 @@ public class User extends BaseEntity {
         this.password = password;
     }
 
-    public Date getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
+    //public Date getCreationDate() {
+        //return creationDate;
+    //}
     
 }

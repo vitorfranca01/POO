@@ -6,22 +6,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import models.Sale;
+import models.Order;
 
 /**
  *
  * @author Vitor
  */
-public class SalesRepository extends BaseRepository {
+public class OrderRepository extends BaseRepository {
     
-    public void insert(Sale sale) throws ClassNotFoundException, SQLException {
+    public void insert(Order order) throws ClassNotFoundException, SQLException {
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(
-                        "INSERT INTO Sale (valorTotal, qtdProdutos, metodoPag, cliente) VALUES (?,?,?,?)")) {
-            stmt.setDouble(1, sale.getValorTotal());
-            stmt.setInt(2, sale.getQtdProdutos());
-            stmt.setInt(3, sale.getMetodoPag());
-            stmt.setString(4, sale.getCliente());
+                        "INSERT INTO Order (valorTotal, qtdProdutos, metodoPag, cliente) VALUES (?,?,?,?)")) {
+            stmt.setDouble(1, order.getValorTotal());
             
             int status = stmt.executeUpdate();
         } catch (Exception e){
@@ -29,14 +26,11 @@ public class SalesRepository extends BaseRepository {
         }
     }
 
-    public void update(Sale sale) {
+    public void update(Order sale) {
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(
                         "UPDATE Sale SET valorTotal = ?, qtdProdutos = ?, metodoPag = ?, cliente = ? WHERE Id = ?")) {
             stmt.setDouble(1, sale.getValorTotal());
-            stmt.setInt(2, sale.getQtdProdutos());
-            stmt.setInt(3, sale.getMetodoPag());
-            stmt.setString(4, sale.getCliente());
             
             int status = stmt.executeUpdate();
         } catch (Exception e){
@@ -56,7 +50,7 @@ public class SalesRepository extends BaseRepository {
         }
     }
 
-    public Sale getById(int id) throws ClassNotFoundException, SQLException {
+    public Order getById(int id) throws ClassNotFoundException, SQLException {
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(
                         "SELECT Id, valorTotal, qtdProdutos, metodoPag, cliente FROM Sale WHERE Id = ?");
@@ -65,7 +59,7 @@ public class SalesRepository extends BaseRepository {
             stmt.setInt(1, id);
             
             while (resultados.next()) {
-                Sale sale = new Sale();
+                /*Order sale = new Order();
                 
                 sale.setId(resultados.getInt("Id"));
                 sale.setValorTotal(resultados.getDouble("valorTotal"));
@@ -73,14 +67,14 @@ public class SalesRepository extends BaseRepository {
                 sale.setMetodoPag(resultados.getInt("MetodoPag"));
                 sale.setCliente(resultados.getString("cliente"));
                 
-                return sale;
+                return sale;*/
             }
         }        
         return null;
     }
 
-    public ArrayList<Sale> getAll() throws ClassNotFoundException, SQLException {
-        ArrayList<Sale> sales = new ArrayList<Sale>();
+    public ArrayList<Order> getAll() throws ClassNotFoundException, SQLException {
+        ArrayList<Order> sales = new ArrayList<Order>();
         
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(
@@ -88,7 +82,7 @@ public class SalesRepository extends BaseRepository {
                 ResultSet resultados = stmt.executeQuery()) {
 
             while (resultados.next()) {
-                Sale sale = new Sale();
+                /*Order sale = new Order();
                 
                 sale.setId(resultados.getInt("Id"));
                 sale.setValorTotal(resultados.getDouble("valorTotal"));
@@ -96,7 +90,7 @@ public class SalesRepository extends BaseRepository {
                 sale.setMetodoPag(resultados.getInt("MetodoPag"));
                 sale.setCliente(resultados.getString("cliente"));
                 
-                sales.add(sale);
+                sales.add(sale);*/
             }
         }        
         return sales;

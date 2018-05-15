@@ -44,16 +44,23 @@
         <script>
         $(".btnDelete").click(function(){
             var id = $(this).data("id");
-            $.ajax({
-                url: "RemoveProduct?id=" + id,
-                method: "GET",
-                success: function(result) {
-                    bootbox.alert("Ola");
-                },
-                error: function(){
-                    alert("deeu ruim")
-                }
+            
+            bootbox.confirm({
+                title: "Remover produto",
+                callback: function(result){
+                    $.ajax({
+                        url: "RemoveProduct?id=" + id,
+                        method: "GET",
+                        success: function(result) {
+                            bootbox.alert("Ola");
+                        },
+                        error: function(){
+                            alert("deeu ruim")
+                        )
+                    });
+                };
             });
+            
         });
         </script>
     </body>

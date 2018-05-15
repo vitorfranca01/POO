@@ -1,0 +1,31 @@
+Mon May 14 21:56:46 BRT 2018 : Apache Derby Servidor de Rede - 10.10.2.0 - (1582446) iniciado e pronto para aceitar conexões na porta 1527 em {3}
+----------------------------------------------------------------
+Mon May 14 21:56:46 BRT 2018:
+ Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instância a816c00e-0163-614c-91f2-ffffef1db18a
+no diretório de banco de dados C:\Users\yuri.jwsilva\Documents\NetBeansProjects\supermercado-astec-tads-pi3\database\Store 
+
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_151-b12
+user.dir=C:\Users\yuri.jwsilva\Documents\glassfish4\javadb
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=C:\Users\yuri.jwsilva\Documents\NetBeansProjects\supermercado-astec-tads-pi3\database
+Carregador de classe do banco de dados iniciado - derby.database.classpath=''
+----------------------------------------------------------------
+Mon May 14 21:56:53 BRT 2018:
+Encerrando a instância a816c00e-0163-614c-91f2-ffffef1db18a
+Mon May 14 21:56:53 BRT 2018 Thread[DRDAConnThread_3,5,main] (DATABASE = Store), (DRDAID = {2}), Banco de dados 'Store' fechado.
+----------------------------------------------------------------
+Mon May 14 21:57:01 BRT 2018:
+ Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instância 560740aa-0163-614c-91f2-ffffef1db18a
+no diretório de banco de dados C:\Users\yuri.jwsilva\Documents\NetBeansProjects\supermercado-astec-tads-pi3\database\Store 
+
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_151-b12
+user.dir=C:\Users\yuri.jwsilva\Documents\glassfish4\javadb
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=C:\Users\yuri.jwsilva\Documents\NetBeansProjects\supermercado-astec-tads-pi3\database
+Carregador de classe do banco de dados iniciado - derby.database.classpath=''

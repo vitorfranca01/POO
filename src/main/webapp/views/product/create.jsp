@@ -20,20 +20,16 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label>Descrição</label>
-                        <textarea class="form-control" rows="8" placeholder="Descreva o produto.." name="descricao"></textarea>
+                        <textarea class="form-control" rows="8" placeholder="Descreva o produto.." name="description"></textarea>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Quantidade</label>
-                            <input class="form-control" value="1" placeholder="Quantidade" />
+                            <input class="form-control" value="1" placeholder="Quantidade" name="amount" />
                         </div>
                         <div class="form-group">
-                            <label>Valor venda</label>
-                            <input class="form-control" placeholder="R$ 9,90" name="valorvenda"/>
-                        </div>
-                        <div class="form-group">
-                            <label>Valor compra</label>
-                            <input class="form-control" placeholder="R$ 9,90" name="valorcompra"/>
+                            <label>Preço</label>
+                            <input type="text" class="form-control" placeholder="R$ 9,90" name="price"/>
                         </div>
                     </div>
                 </div>

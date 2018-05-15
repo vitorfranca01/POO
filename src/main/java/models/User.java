@@ -15,7 +15,33 @@ public class User extends BaseEntity {
     private String name;
     private String cpf;
     private String password;
-    //private Date creationDate;
+    private int filial;
+    private int group;    
+    private String creationDate;
+
+    public String getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(String creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public int getFilial() {
+        return filial;
+    }
+
+    public void setFilial(int filial) {
+        this.filial = filial;
+    }
+
+    public int getGroup() {
+        return group;
+    }
+
+    public void setGroup(int group) {
+        this.group = group;
+    }
 
     public String getName() {
         return name;

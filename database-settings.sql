@@ -13,7 +13,7 @@ CREATE TABLE "GROUP" (
 CREATE TABLE "USER" (
     Id INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
     Name VARCHAR(120) NOT NULL,
-    CPF VARCHAR(14) NOT NULL,
+    CPF VARCHAR(14) NOT NULL UNIQUE,
     Password VARCHAR(255) NOT NULL,
     SubsidiaryId INT NOT NULL,
     CreationDate DATE DEFAULT CURRENT_DATE,
@@ -53,3 +53,21 @@ CREATE TABLE OrderItem (
     PRIMARY KEY (Id),
     FOREIGN KEY (OrderId) REFERENCES "ORDER"(Id)
 );
+
+INSERT INTO "GROUP" (Name)
+VALUES ('Vendedor'), ('Gerente');
+
+INSERT INTO "SUBSIDIARY" (Name)
+VALUES ('São Paulo'), ('Minas Gerais'), ('Recife');
+
+INSERT INTO "USER" (Name, CPF, Password, SubsidiaryId, GroupId)
+VALUES ('Wilson', '123.456.789-10', '123', 2, 1), ('Valdomiro', '549.569.812-10', '123', 1, 2);
+
+INSERT INTO "PRODUCT" (Name, Description, Price, Brand)
+VALUES ('Bolacha', 'Bolacha recheada', 2.49, 'Trakinass');
+
+INSERT INTO "ORDER" (Total, CPF, UserId)
+VALUES (50, NULL, 2);
+
+INSERT INTO "ORDERITEM" (OrderId, ProductId, Amount)
+VALUES (1, 1, 2);

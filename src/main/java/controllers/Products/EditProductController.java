@@ -3,25 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers.Users;
+package controllers.Products;
 
+import com.sun.corba.se.impl.orbutil.ObjectWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.User;
-import services.UserService;
+import models.Product;
+import services.ProductService;
 
 /**
  *
  * @author Beto
  */
-@WebServlet(name = "UserManagerController", urlPatterns = {"/UserManager","/usermanager"})
-public class UserManagerController extends HttpServlet {
+@WebServlet(name = "EditProductController", urlPatterns = {"/EditProduct"})
+public class EditProductController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,11 +34,8 @@ public class UserManagerController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("application/json");
         try (PrintWriter out = response.getWriter()) {
-            
-            RequestDispatcher rd = request.getRequestDispatcher("/views/users/index.jsp");
-            rd.forward(request,response);
         }
     }
 
@@ -54,8 +51,14 @@ public class UserManagerController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("users", UserService.getAll());
-        processRequest(request, response);
+        
+        int id = Integer.parseInt(request.getParameter("id"));            
+        Product product = ProductService.getById(id);
+        response.setContentType("application/json");
+                
+        try (PrintWriter out = response.getWriter()) {
+            out.print(product.toString());
+        }
     }
 
     /**
@@ -70,14 +73,15 @@ public class UserManagerController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        User user = new User();
-        user.setName(request.getParameter("name"));
-        user.setCpf(request.getParameter("cpf"));
-        user.setPassword(request.getParameter("password"));
-        user.setFilial(Integer.parseInt(request.getParameter("subsidiary")));
-        user.setGroup(Integer.parseInt(request.getParameter("group")));
+        Product produto = new Product();
+        produto.setId(Integer.parseInt(request.getParameter("id")));
+        produto.setName(request.getParameter("name"));
+        produto.setBrand(request.getParameter("brand"));
+        produto.setDescription(request.getParameter("description"));
+        produto.setAmount(Integer.parseInt(request.getParameter("amount")));
+        produto.setPrice(Double.parseDouble(request.getParameter("price")));
 
-        UserService.insert(user);
+        ProductService.update(produto);
         
         processRequest(request, response);
     }

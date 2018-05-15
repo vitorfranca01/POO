@@ -5,7 +5,7 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="models.Sale"%>
+<%@page import="models.Order"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -27,7 +27,7 @@
                     <th>CPF</th>
                     <th>Data de Criação</th>
                 </tr>
-                <c:forEach items="${sales}" var="user">               
+                <c:forEach items="${sales}" var="sale">               
                 <tr>
                     <td>${sale.name}</td>
                     <td>${sale.cpf}</td>

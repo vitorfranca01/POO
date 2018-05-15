@@ -73,11 +73,9 @@ public class ProductRepository extends BaseRepository {
     public Product getById(int id) throws ClassNotFoundException, SQLException {
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(
-                        "SELECT Id, Name, Description, Price FROM Product WHERE Id = ?");
+                        "SELECT Id, Name, Description, Price FROM Product WHERE Id = " + id);
                 ResultSet resultados = stmt.executeQuery()) {
-            
-            stmt.setInt(1, id);
-            
+                        
             while (resultados.next()) {
                 Product product = new Product();
                 
@@ -96,7 +94,7 @@ public class ProductRepository extends BaseRepository {
         
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(
-                        "SELECT Id, Name, Description, Price FROM Product");
+                        "SELECT Id, Name, Price, brand, amount FROM Product");
                 ResultSet resultados = stmt.executeQuery()) {
 
             while (resultados.next()) {
@@ -105,6 +103,8 @@ public class ProductRepository extends BaseRepository {
                 product.setId(resultados.getInt("Id"));
                 product.setName(resultados.getString("Name"));
                 product.setPrice(resultados.getDouble("Price"));
+                product.setBrand(resultados.getString("brand"));
+                product.setAmount(resultados.getInt("amount"));
                 
                 products.add(product);
             }

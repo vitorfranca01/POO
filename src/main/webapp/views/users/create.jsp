@@ -22,6 +22,22 @@
                         <label>Senha</label>
                         <input class="form-control" placeholder="Password" name="password" />
                     </div>
+                    <div class="form-group col-md-6">
+                        <label>Filial</label>
+                        <select class="form-control" name="subsidiary">
+                            <option value="0">Selecione uma filia..</option>
+                            <option value="1">São Paulo</option>
+                            <option value="2">Recife</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Grupo</label>
+                        <select class="form-control" name="group">
+                            <option value="0">Selecione um grupo..</option>
+                            <option value="1">Vendedor</option>
+                            <option value="2">Gerente</option>
+                        </select>
+                    </div>
                 </div>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 <button type="submit" class="btn btn-primary">Cadastrar</button>

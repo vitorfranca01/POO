@@ -26,11 +26,13 @@
                     <th>Nome</th>
                     <th>CPF</th>
                     <th>Data de Criação</th>
+                    <th>Ações</th>
                 </tr>
                 <c:forEach items="${users}" var="user">               
                 <tr>
                     <td>${user.name}</td>
                     <td>${user.cpf}</td>
+                    <td>${user.creationDate}</td>
                     <td>
                         <button class="btn btn-success">Editar</button>
                         <a href="RemoveUser?id=${product.id}" class="btn btn-danger btnDelete">Deletar</a>

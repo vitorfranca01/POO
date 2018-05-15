@@ -21,12 +21,14 @@ public class UserRepository extends BaseRepository {
     public void insert(User user) throws ClassNotFoundException, SQLException {
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(
-                        "INSERT INTO \"User\" (Name, Cpf, Password, CreationDate) VALUES (?,?,?,?)")) {
+                        "INSERT INTO ROOT.\"USER\" (Name, Cpf, Password, subsidiaryid, groupid, creationdate) VALUES (?,?,?,?,?,?)")) {
             stmt.setString(1, user.getName());
             stmt.setString(2, user.getCpf());
             stmt.setString(3, user.getPassword());
+            stmt.setInt(4, user.getFilial());
+            stmt.setInt(5, user.getGroup());            
             GregorianCalendar cal = new GregorianCalendar(1992, 10, 5); // 5 de novembro de 1992  
-            stmt.setDate(4, new java.sql.Date(cal.getTimeInMillis()));
+            stmt.setDate(6, new java.sql.Date(cal.getTimeInMillis()));
             
             int status = stmt.executeUpdate();
         } catch (Exception e) {
@@ -37,7 +39,7 @@ public class UserRepository extends BaseRepository {
     public void update(User user) {
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(
-                        "UPDATE User SET Name = ?, Cpf = ?, Password = ? WHERE Id = ?")) {
+                        "UPDATE ROOT.\"USER\" SET Name = ?, Cpf = ?, Password = ?, subsidiaryid = ?, groupid = ? WHERE Id = ?")) {
             stmt.setString(1, user.getName());
             stmt.setString(2, user.getCpf());
             stmt.setString(3, user.getPassword());
@@ -65,7 +67,7 @@ public class UserRepository extends BaseRepository {
     public User getById(int id) throws ClassNotFoundException, SQLException {
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(
-                        "SELECT Id, Name, Cpf, Password FROM \"User\" WHERE Id = " + id);
+                        "SELECT Id, Name, Cpf, Password, GroupId FROM ROOT.\"USER\" WHERE Id = " + id);
                 ResultSet resultados = stmt.executeQuery()) {
 
             while (resultados.next()) {
@@ -75,6 +77,7 @@ public class UserRepository extends BaseRepository {
                 user.setName(resultados.getString("Name"));
                 user.setCpf(resultados.getString("Cpf"));
                 user.setPassword(resultados.getString("Password"));
+                user.setGroup(resultados.getInt("GroupId"));
                 //user.setCreationDate(resultados.getDate("Date"));
 
                 return user;
@@ -86,7 +89,7 @@ public class UserRepository extends BaseRepository {
     public User getByCPF(String cpf) throws ClassNotFoundException, SQLException {
         try (Connection conn = getConnection()) {
             PreparedStatement stmt = conn.prepareStatement(
-                    "SELECT Id, Name, Cpf, Password FROM \"User\" WHERE CPF = '" + cpf + "'");
+                    "SELECT Id, Name, Cpf, Password, GroupId FROM \"USER\" WHERE CPF = '" + cpf + "'");
 
             ResultSet resultados = stmt.executeQuery();
                 
@@ -97,6 +100,7 @@ public class UserRepository extends BaseRepository {
                 user.setName(resultados.getString("Name"));
                 user.setCpf(resultados.getString("Cpf"));
                 user.setPassword(resultados.getString("Password"));
+                user.setGroup(resultados.getInt("GroupId"));
                 //user.setCreationDate(resultados.getDate("Date"));
 
                 return user;
@@ -112,7 +116,7 @@ public class UserRepository extends BaseRepository {
 
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(
-                        "SELECT Id, Name, Cpf FROM \"User\"");
+                        "SELECT Id, Name, Cpf, Creationdate FROM ROOT.\"USER\"");
                 ResultSet resultados = stmt.executeQuery()) {
 
             while (resultados.next()) {
@@ -121,7 +125,7 @@ public class UserRepository extends BaseRepository {
                 user.setId(resultados.getInt("Id"));
                 user.setName(resultados.getString("Name"));
                 user.setCpf(resultados.getString("Cpf"));
-                //user.setDate(resultados.getDate("Date"));
+                user.setCreationDate(resultados.getString("Creationdate"));
 
                 users.add(user);
             }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers.Users;
+package controllers.Sales;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,15 +13,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.User;
-import services.UserService;
 
 /**
  *
  * @author Beto
  */
-@WebServlet(name = "UserManagerController", urlPatterns = {"/UserManager","/usermanager"})
-public class UserManagerController extends HttpServlet {
+@WebServlet(name = "CarShopManagerController", urlPatterns = {"/CarShopManagerController"})
+public class CarShopManagerController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,8 +34,7 @@ public class UserManagerController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-            RequestDispatcher rd = request.getRequestDispatcher("/views/users/index.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("/views/product/index.jsp");
             rd.forward(request,response);
         }
     }
@@ -54,7 +51,6 @@ public class UserManagerController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("users", UserService.getAll());
         processRequest(request, response);
     }
 
@@ -69,16 +65,6 @@ public class UserManagerController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        User user = new User();
-        user.setName(request.getParameter("name"));
-        user.setCpf(request.getParameter("cpf"));
-        user.setPassword(request.getParameter("password"));
-        user.setFilial(Integer.parseInt(request.getParameter("subsidiary")));
-        user.setGroup(Integer.parseInt(request.getParameter("group")));
-
-        UserService.insert(user);
-        
         processRequest(request, response);
     }
 

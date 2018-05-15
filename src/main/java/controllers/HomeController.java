@@ -21,7 +21,7 @@ import services.UserService;
  *
  * @author Yuri PC
  */
-@WebServlet(name = "Home", urlPatterns = {"/Home", "/home", ""})
+@WebServlet(name = "HomeController", urlPatterns = {"/Home", "/home", ""})
 public class HomeController extends HttpServlet {
 
     /**
@@ -55,13 +55,10 @@ public class HomeController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        if(!UserService.isLogged(session))
-            response.sendRedirect("Login");
-        else {
-            User user = UserService.findById(Integer.parseInt(session.getAttribute("UserId").toString()));
-            session.setAttribute("username", user.getName());
-            processRequest(request, response);
-        }
+        
+        User user = UserService.findById(Integer.parseInt(session.getAttribute("UserId").toString()));
+        session.setAttribute("username", user.getName());
+        processRequest(request, response);
     }
 
     /**

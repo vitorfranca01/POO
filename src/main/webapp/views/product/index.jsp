@@ -33,7 +33,7 @@
                     <td>R$ ${product.price}</td>
                     <td>${product.amount}</td>
                     <td>
-                        <button class="btn btn-success">Editar</button>
+                        <button type="button" data-id="${product.id}" class="btn btn-success btnEdit">Editar</button>
                         <button type="button" data-id="${product.id}" class="btn btn-danger btnDelete">Deletar</button>
                     </td>
                 </tr>
@@ -41,6 +41,7 @@
             </table>
         </div>
         <%@include file="create.jsp" %>
+        <%@include file="edit.jsp" %>
         <%@include file="../../includes/footer.jsp" %>
         <script>
         $(".btnDelete").click(function(){
@@ -48,6 +49,7 @@
             
             bootbox.confirm({
                 title: "Remover produto",
+                message: "Você quer mesmo remover este produto?",
                 buttons: {
                     confirm: {
                         label: 'Confirmar',
@@ -59,19 +61,39 @@
                     }
                 },
                 callback: function(result){
+                    if (result != 1)
+                        return;
                     $.ajax({
                         url: "RemoveProduct?id=" + id,
                         method: "GET",
                         success: function(result) {
+                            var row = $(this).parent().parent();
+                            $("#alert").removeClass("alert-danger").addClass("alert-success");
                             $("#alert").text("Removido com sucesso!").show();
+                            row.remove();
                         },
                         error: function(){
+                            $("#alert").removeClass("alert-success").addClass("alert-danger");
                             $("#alert").text("Ocorreu um erro ao remover o produto!").show();
-                        )
+                        }
                     });
-                };
+                }
             });
             
+        });
+        
+    $(".btnEdit").click(function(){
+            var id = $(this).data("id");
+            $.ajax({
+                url: "EditProduct?id=" + id,
+                method: "GET",
+                success: function(result){
+                    debugger;
+                    $("#editProductModal").modal('show');
+                },
+                error: function() {
+                }
+            });
         });
         </script>
     </body>

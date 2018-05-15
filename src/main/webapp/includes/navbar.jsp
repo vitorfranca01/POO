@@ -16,6 +16,9 @@
         <li class="nav-item">
             <a class="nav-link" href="UserManager">Funcionários</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" id="btnLoggout">Sair</a>
+        </li>
     </ul>
 </nav>
 <br>

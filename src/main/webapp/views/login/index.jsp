@@ -30,7 +30,7 @@
                 </div>
                 <button type="submit" class="btn btn-lg btn-primary btn-block">Entrar</button>
             </form>
-            <span class="alert alert-danger">
+            <span class="alert alert-danger" style="display: none">
                 Erro
             </span>
         </div>

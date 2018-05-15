@@ -21,7 +21,7 @@ import services.UserService;
  *
  * @author Yuri PC
  */
-@WebServlet(name = "Login", urlPatterns = {"/Login"})
+@WebServlet(name = "Login", urlPatterns = {"/Login","/login"})
 public class LoginController extends HttpServlet {
 
     /**
@@ -55,6 +55,13 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        HttpSession session = request.getSession();
+
+        if (UserService.isLogged(session)) {
+            response.sendRedirect(request.getContextPath() + "/home");
+        } 
+        
         processRequest(request, response);
     }
 

@@ -35,6 +35,14 @@ public class ProductService {
         }
     }
     
+    public static void update (Product product){
+        try {
+            repository.update(product);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
     public static boolean remove (int id){
         try {
             repository.remove(id);

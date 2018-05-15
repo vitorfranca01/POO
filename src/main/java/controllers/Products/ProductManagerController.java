@@ -71,15 +71,15 @@ public class ProductManagerController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-            Product produto = new Product();
-            produto.setName(request.getParameter("name"));
-            produto.setBrand(request.getParameter("brand"));
-            produto.setDescription(request.getParameter("description"));
-            produto.setAmount(Integer.parseInt(request.getParameter("amount")));
-            produto.setPrice(Double.parseDouble(request.getParameter("price")));
-            
-            ProductService.insert(produto);
-        
+        Product produto = new Product();
+        produto.setName(request.getParameter("name"));
+        produto.setBrand(request.getParameter("brand"));
+        produto.setDescription(request.getParameter("description"));
+        produto.setAmount(Integer.parseInt(request.getParameter("amount")));
+        produto.setPrice(Double.parseDouble(request.getParameter("price")));
+
+        ProductService.insert(produto);
+
         processRequest(request, response);
     }
 

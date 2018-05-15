@@ -12,6 +12,7 @@
         <%@include file="../../includes/navbar.jsp" %>
         <input type="text" hidden=""/>
         <div class="container">
+            <span class="alert alert-danger" style="display:none" id="alert"></span>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createProductModal">
                 Cadastrar novo produto
             </button>
@@ -47,15 +48,25 @@
             
             bootbox.confirm({
                 title: "Remover produto",
+                buttons: {
+                    confirm: {
+                        label: 'Confirmar',
+                        className: 'btn-success'
+                    },
+                    cancel: {
+                        label: 'Cancelar',
+                        className: 'btn-default'
+                    }
+                },
                 callback: function(result){
                     $.ajax({
                         url: "RemoveProduct?id=" + id,
                         method: "GET",
                         success: function(result) {
-                            bootbox.alert("Ola");
+                            $("#alert").text("Removido com sucesso!").show();
                         },
                         error: function(){
-                            alert("deeu ruim")
+                            $("#alert").text("Ocorreu um erro ao remover o produto!").show();
                         )
                     });
                 };

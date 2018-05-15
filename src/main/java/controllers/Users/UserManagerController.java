@@ -70,12 +70,12 @@ public class UserManagerController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        User funcionario = new User();
-        funcionario.setName(request.getParameter("name"));
-        funcionario.setCpf(request.getParameter("cpf"));
-        funcionario.setPassword(request.getParameter("password"));
+        User user = new User();
+        user.setName(request.getParameter("name"));
+        user.setCpf(request.getParameter("cpf"));
+        user.setPassword(request.getParameter("password"));
 
-        UserService.insert(funcionario);
+        UserService.insert(user);
         
         processRequest(request, response);
     }
